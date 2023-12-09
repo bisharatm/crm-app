@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block page_content %}
+
+<div class="card">
+    <div class="card-header">
+        {{ record.first_name }} {{ record.last_name }}
+    </div>
+    <div class="card-body">      
+      <p class="card-text">
+        {{ record.email }} <br/>
+        {{ record.phone }} <br/>
+        {{ record.address }} <br/>
+        {{ record.city }} <br/>
+        {{ record.state }} <br/>
+        {{ record.zipcode }} <br/>
+        {{ record.created_at }} <br/>
+      </p>      
+    </div>
+</div>
+<br/><br/>
+<a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+<a href="{% url 'delete_record' record.id %}" class="btn btn-danger">Delete</a>
+{% endblock page_content %}
