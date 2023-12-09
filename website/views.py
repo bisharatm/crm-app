@@ -52,10 +52,16 @@ def show_record(request, pk):
     if request.user.is_authenticated:
         cus_rec = Record.objects.get(id=pk)
         return render(request, 'record.html', {'record': cus_rec})
+    else:
+        messages.error(request, 'You must be logged in to view customer records.')
+        return redirect('home')
 
 def delete_record(request, pk):
     delete_it = Record.objects.get(id=pk)
     if delete_it:
         delete_it.delete()
         messages.success(request, '1 record deleted successfully.')
+        return redirect('home')
+    else:
+        messages.error(request, 'You must be logged in to delete customer record.')
         return redirect('home')
